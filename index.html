@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rezwan The Khadok | Street Food Explorer BD</title>
+<style>
+:root{--brown:#35120b;--red:#b52b16;--orange:#f28b18;--gold:#ffc22e;--cream:#fff8e8;--ink:#24130e}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:var(--cream);color:var(--ink)}
+header{position:sticky;top:0;z-index:20;background:#35120bf5;color:#fff;box-shadow:0 3px 15px #0003}
+nav{max-width:1150px;margin:auto;padding:9px 18px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900}.brand img{width:50px;height:50px;border-radius:50%;object-fit:contain}.links{display:flex;gap:20px}.links a{color:#fff;text-decoration:none;font-weight:700}
+.hero{padding:70px 18px 90px;text-align:center;color:#fff;background:radial-gradient(circle at 50% 15%,#ffc22e,#f28b18 32%,#8d2414 70%,#35120b)}
+.hero img{width:min(310px,75vw);border-radius:50%;filter:drop-shadow(0 12px 16px #0006)}h1{font-size:clamp(35px,7vw,70px);margin:15px 0 8px;line-height:1;text-transform:uppercase;text-shadow:4px 4px 0 #35120b}.hero p{font-size:20px;font-weight:700}
+.btn{display:inline-block;border:0;border-radius:30px;padding:12px 20px;margin:6px;background:var(--gold);color:var(--brown);font-weight:900;text-decoration:none;cursor:pointer}.btn.dark{background:var(--brown);color:#fff}.btn.outline{background:transparent;color:#fff;border:2px solid #fff}
+section{padding:65px 18px}.wrap{max-width:1100px;margin:auto}.title{text-align:center;color:var(--brown);font-size:38px;margin:0 0 8px}.sub{text-align:center;color:#6d554a;margin:0 0 30px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px #35120b18;border:1px solid #ead7bd}.card img{width:100%;height:200px;object-fit:cover;background:#f4d49a}.cardbody{padding:18px}.tag{display:inline-block;background:#ffe0a1;color:#6b2b16;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:800}.price{font-weight:900;color:var(--red)}
+.about{background:var(--brown);color:#fff}.about .title{color:var(--gold)}
+.admin{background:#fff0d2}.panel{max-width:850px;margin:auto;background:#fff;padding:25px;border-radius:20px;box-shadow:0 8px 25px #35120b18}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}label{font-weight:800;font-size:14px}input,textarea,select{width:100%;padding:11px;margin-top:5px;border:1px solid #d9c2a2;border-radius:10px;font:inherit}textarea{min-height:110px;resize:vertical}.full{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.small{font-size:13px;color:#725c50}
+#loginBox,#editor{display:none}footer{background:#1d100c;color:#fff;text-align:center;padding:28px 18px}
+@media(max-width:780px){.links{display:none}.grid,.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding-top:45px}}
+</style>
+</head>
+<body>
+<header><nav><a class="brand" href="#home"><img src="assets/logo.png"><span>REZWAN THE KHADOK</span></a><div class="links"><a href="#home">Home</a><a href="#reviews">Reviews</a><a href="#locations">Locations</a><a href="#about">About</a><a href="#admin">Admin</a></div></nav></header>
+
+<main>
+<section class="hero" id="home"><div class="wrap"><img src="assets/logo.png"><h1>Street Food Explorer</h1><p>বাংলাদেশের স্ট্রিট ফুড খুঁজে দেখি, খাই আর আপনাদের জানাই!</p><a class="btn" href="#reviews">🍜 Food Reviews</a><a class="btn outline" href="#admin">⚙ Admin Panel</a></div></section>
+
+<section id="reviews"><div class="wrap"><h2 class="title">🍜 Food Reviews</h2><p class="sub">Admin Panel থেকে আপনার নতুন খাবারের পোস্ট এখানে যোগ হবে।</p><div id="postGrid" class="grid"></div></div></section>
+
+<section id="locations" style="background:#fff0d2"><div class="wrap"><h2 class="title">📍 Food Locations</h2><p class="sub">আপনার রিভিউয়ের লোকেশনগুলো পোস্টের সঙ্গে দেখানো হবে।</p><div id="locationGrid" class="grid"></div></div></section>
+
+<section class="about" id="about"><div class="wrap"><h2 class="title">About The Khadok</h2><p style="max-width:800px;margin:auto;text-align:center">“Rezwan The Khadok” একটি স্ট্রিট ফুড এক্সপ্লোরিং প্ল্যাটফর্ম। নতুন খাবার খোঁজা, স্বাদ নেওয়া এবং অভিজ্ঞতা শেয়ার করাই এই পেজের মূল উদ্দেশ্য।</p></div></section>
+
+<section class="admin" id="admin"><div class="wrap"><h2 class="title">⚙ Admin Panel</h2><p class="sub">এখান থেকে খাবারের পোস্ট যোগ, এডিট ও ডিলিট করতে পারবেন।</p>
+<div class="panel">
+<div id="loginBox"><h3>Admin Login</h3><label>Password<input id="password" type="password" placeholder="আপনার পাসওয়ার্ড"></label><button class="btn dark" onclick="login()">Login</button><p class="small">ডেমো পাসওয়ার্ড: <b>1234</b> — অনলাইনে দেওয়ার আগে অবশ্যই পরিবর্তন করুন।</p></div>
+<div id="editor">
+<h3 id="formTitle">নতুন Food Post</h3>
+<div class="formgrid">
+<label>খাবারের নাম<input id="name" placeholder="যেমন: কাচ্চি বিরিয়ানি"></label>
+<label>ক্যাটাগরি<input id="category" placeholder="Biryani / Burger / Snacks"></label>
+<label>দাম<input id="price" placeholder="যেমন: 180 টাকা"></label>
+<label>লোকেশন<input id="location" placeholder="যেমন: পুরান ঢাকা"></label>
+<label class="full">ছবির URL (ঐচ্ছিক)<input id="image" placeholder="https://.../food.jpg"></label>
+<label class="full">রিভিউ<textarea id="description" placeholder="খাবারের স্বাদ, পরিবেশ ও আপনার অভিজ্ঞতা লিখুন..."></textarea></label>
+</div>
+<div class="actions"><button class="btn dark" onclick="savePost()">💾 Save Post</button><button class="btn" onclick="resetForm()">Clear</button><button class="btn outline" style="color:#35120b;border-color:#35120b" onclick="logout()">Logout</button></div>
+<div id="manage" style="margin-top:25px"></div>
+</div></div></div></section>
+</main>
+<footer>© 2026 Rezwan The Khadok — Street Food Explorer | BD</footer>
+
+<script>
+const KEY='rezwanKhadokPosts';
+let editId=null;
+const demo=[
+{id:1,name:'পুরান ঢাকার কাচ্চি',category:'Biryani',price:'180 টাকা',location:'পুরান ঢাকা',image:'',description:'সুগন্ধি চাল, মাংস ও মশলার স্বাদের একটি ফুড রিভিউ। আপনার নিজের অভিজ্ঞতা দিয়ে এই লেখা বদলে দিন।'},
+{id:2,name:'স্ট্রিট বার্গার',category:'Burger',price:'150 টাকা',location:'ঢাকা',image:'',description:'লোকাল স্ট্রিট ফুডের জনপ্রিয় বার্গার নিয়ে আপনার রিভিউ এখানে লিখুন।'}
+];
+function posts(){try{return JSON.parse(localStorage.getItem(KEY))||demo}catch(e){return demo}}
+function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}
+function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function render(){
+ const a=posts(); const grid=document.getElementById('postGrid');
+ grid.innerHTML=a.length?a.map(p=>`<article class="card">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:`<div style="height:200px;display:grid;place-items:center;background:linear-gradient(135deg,#ffc22e,#b52b16);font-size:65px">🍽️</div>`}<div class="cardbody"><span class="tag">${esc(p.category)}</span><h3>${esc(p.name)}</h3><p>${esc(p.description)}</p><p><b>📍 ${esc(p.location)}</b> &nbsp; <span class="price">৳ ${esc(p.price)}</span></p></div></article>`).join(''):'<p>এখনও কোনো পোস্ট নেই। Admin Panel থেকে প্রথম পোস্ট যোগ করুন।</p>';
+ const loc={};a.forEach(p=>(loc[p.location]??=[]).push(p));
+ document.getElementById('locationGrid').innerHTML=Object.keys(loc).length?Object.entries(loc).map(([l,v])=>`<article class="card"><div class="cardbody"><h3>📍 ${esc(l)}</h3><p>${v.length}টি Food Review</p><a class="btn dark" href="#reviews">Reviews দেখুন</a></div></article>`).join(''):'<p>লোকেশন পোস্টের সঙ্গে তৈরি হবে।</p>';
+ if(document.getElementById('editor').style.display==='block') renderManage();
+}
+function login(){
+ if(document.getElementById('password').value==='1234'){document.getElementById('loginBox').style.display='none';document.getElementById('editor').style.display='block';renderManage()}
+ else alert('পাসওয়ার্ড সঠিক নয়।')
+}
+function logout(){document.getElementById('editor').style.display='none';document.getElementById('loginBox').style.display='block'}
+function resetForm(){editId=null;['name','category','price','location','image','description'].forEach(x=>document.getElementById(x).value='');document.getElementById('formTitle').textContent='নতুন Food Post'}
+function savePost(){
+ const p={id:editId||Date.now(),name:name.value.trim(),category:category.value.trim()||'Food',price:price.value.trim(),location:location.value.trim(),image:image.value.trim(),description:description.value.trim()};
+ if(!p.name||!p.location||!p.description){alert('খাবারের নাম, লোকেশন ও রিভিউ লিখুন।');return}
+ let a=posts(); const i=a.findIndex(x=>x.id===p.id); if(i>=0)a[i]=p;else a.unshift(p); saveAll(a); resetForm(); render(); alert('Post Save হয়েছে!')
+}
+function editPost(id){const p=posts().find(x=>x.id===id);if(!p)return;editId=id;name.value=p.name;category.value=p.category;price.value=p.price;location.value=p.location;image.value=p.image;description.value=p.description;document.getElementById('formTitle').textContent='Post Edit করুন';scrollTo({top:document.getElementById('admin').offsetTop,behavior:'smooth'})}
+function deletePost(id){if(confirm('এই পোস্টটি মুছে ফেলবেন?')){saveAll(posts().filter(x=>x.id!==id));render()}}
+function renderManage(){document.getElementById('manage').innerHTML='<h3>আপনার পোস্ট</h3>'+posts().map(p=>`<div style="padding:10px 0;border-bottom:1px solid #ead7bd"><b>${esc(p.name)}</b> — ${esc(p.location)} <button class="btn" onclick="editPost(${p.id})">Edit</button><button class="btn dark" onclick="deletePost(${p.id})">Delete</button></div>`).join('')}
+document.getElementById('loginBox').style.display='block';render();
+</script>
+</body></html>
